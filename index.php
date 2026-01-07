@@ -76,13 +76,13 @@
             
             <div class="space-y-4 w-full">
                 <div class="glass p-1 sm:p-2 rounded-xl">
-                    <img src="image1.jpeg" class="w-full rounded-lg" alt="Infographic Part 1">
+                    <img src="image4.jpeg" class="w-full rounded-lg" alt="Infographic Part 1">
                 </div>
                 <div class="glass p-1 sm:p-2 rounded-xl">
-                    <img src="image2.jpeg" class="w-full rounded-lg" alt="Infographic Part 2">
+                    <img src="image5.jpeg" class="w-full rounded-lg" alt="Infographic Part 2">
                 </div>
                 <div class="glass p-1 sm:p-2 rounded-xl">
-                    <img src="image3.jpeg" class="w-full rounded-lg" alt="Infographic Part 3">
+                    <img src="image6.jpeg" class="w-full rounded-lg" alt="Infographic Part 3">
                 </div>
             </div>
             
