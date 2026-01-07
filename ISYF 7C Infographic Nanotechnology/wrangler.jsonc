@@ -1,7 +1,7 @@
 {
-  "name": "nanotech-site",
-  "compatibility_date": "2026-01-07",
+  "name": "isyf-7c-nanotech",
+  "compatibility_date": "2026-01-08",
   "assets": {
-    "directory": "./"
+    "directory": "."
   }
 }
