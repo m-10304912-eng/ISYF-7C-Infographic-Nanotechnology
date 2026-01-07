@@ -10,72 +10,74 @@
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000428; }
         canvas { position: fixed; top: 0; left: 0; z-index: 0; }
-        .content-overlay { position: relative; z-index: 10; pointer-events: none; }
-        .interactive { pointer-events: auto; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gold-glow { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
         
-        /* Modal Transitions */
-        #galleryModal { transition: opacity 0.5s ease; }
-        .hidden { display: none !important; }
-        .opacity-0 { opacity: 0; }
+        /* Modal Utilities */
+        #galleryModal { transition: opacity 0.3s ease; }
+        .interactive { pointer-events: auto; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen text-white font-sans">
 
     <canvas id="dnaCanvas"></canvas>
 
-    <main class="content-overlay text-center px-4 flex flex-col items-center">
-        <!-- Badge -->
-        <div class="animate-bounce mb-8 interactive">
-            <span class="px-4 py-1 border border-cyan-400 rounded-full text-xs text-cyan-400 font-mono tracking-widest bg-cyan-900/20">
-                2026 QUANTUM ERA
+    <main class="relative z-10 text-center px-6 transition-opacity duration-500" id="mainContent">
+        <div class="mb-4">
+            <span class="px-4 py-1 border border-yellow-500/50 rounded-full text-[10px] tracking-[0.2em] text-yellow-500 font-bold uppercase bg-yellow-500/10">
+                Molecular Engineering Frontier
             </span>
         </div>
         
-        <!-- Title -->
-        <h1 class="text-6xl md:text-8xl font-black mb-2 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-cyan-500 drop-shadow-[0_0_20px_rgba(0,243,255,0.4)]">
-            NANO<br>FRONTIER
+        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter gold-glow uppercase italic">
+            Nano<br><span class="text-cyan-400">Era</span>
         </h1>
-        
-        <p class="text-gray-400 mb-10 text-lg max-w-xl mx-auto tracking-wide">
-            EXPLORING MOLECULAR ENGINEERING & GOLD NANOPARTICLES
+
+        <p class="mb-10 text-gray-400 max-w-md mx-auto text-sm leading-relaxed">
+            Manipulating matter at the atomic scale to revolutionize the future of medicine and materials.
         </p>
 
-        <!-- Buttons -->
-        <div class="flex flex-col md:flex-row gap-6 justify-center interactive w-full max-w-2xl">
-            <button onclick="openGallery()" class="glass px-8 py-4 rounded-xl hover:bg-cyan-500/20 transition-all font-bold border-b-4 border-cyan-500 text-cyan-100 w-full md:w-auto hover:scale-105 active:scale-95">
-                VIEW INFOGRAPHIC
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <button onclick="openGallery()" class="glass px-10 py-4 rounded-full hover:bg-yellow-500/20 transition-all font-bold border border-yellow-500/50 text-yellow-500 interactive">
+                INFOGRAPHIC
             </button>
-            <a href="https://phyweb.physics.nus.edu.sg/~physowch/NanoLab/" target="_blank" class="glass px-8 py-4 rounded-xl hover:bg-purple-500/20 transition-all font-bold border-b-4 border-purple-500 text-purple-100 w-full md:w-auto hover:scale-105 active:scale-95 flex items-center justify-center">
-                PROF. SOW'S LAB
+            <a href="https://phyweb.physics.nus.edu.sg/~physowch/NanoLab/" target="_blank" class="glass px-10 py-4 rounded-full hover:bg-cyan-500/20 transition-all font-bold border border-cyan-500/50 text-cyan-400 interactive">
+                LAB WEBSITE
             </a>
         </div>
-
-        <!-- QR Code (Restored) -->
-        <div class="mt-16 interactive glass p-3 rounded-lg flex items-center gap-4 hover:bg-white/10 transition-colors cursor-default max-w-xs mx-auto">
-            <div class="bg-white p-1 rounded">
-                <img src="QR.png" alt="Scan QR" class="w-12 h-12 object-contain">
-            </div>
-            <div class="text-left">
-                <p class="text-cyan-400 text-xs font-bold uppercase tracking-wider">Mobile Access</p>
-                <p class="text-xs text-gray-400">Scan to view on device</p>
+        
+        <!-- QR Code (Integrated Style) -->
+        <div class="mt-12 flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+            <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/10">
+                <img src="QR.png" alt="Mobile QR" class="w-10 h-10 object-contain">
             </div>
         </div>
     </main>
 
-    <!-- Lightbox Gallery (Restored) -->
+    <!-- Lightbox Gallery (Overlay) -->
     <div id="galleryModal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl opacity-0 overflow-y-auto interactive">
-        <button onclick="closeGallery()" class="fixed top-6 right-6 text-white hover:text-cyan-400 z-[60] p-2 bg-black/50 rounded-full">
+        <button onclick="closeGallery()" class="fixed top-6 right-6 text-white hover:text-yellow-500 z-[60] bg-white/10 rounded-full p-2 backdrop-blur-sm">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <div class="max-w-4xl mx-auto p-4 md:p-10 space-y-8 flex flex-col items-center min-h-screen justify-center">
-            <h2 class="text-3xl font-bold text-cyan-400 tracking-widest uppercase mb-4">The Nano Era Infographic</h2>
+        
+        <div class="max-w-4xl mx-auto p-4 md:p-10 min-h-screen flex flex-col items-center justify-center space-y-8">
+            <h2 class="text-3xl font-bold text-yellow-500 tracking-widest uppercase mb-4 gold-glow">The Nano Era</h2>
             
-            <div class="w-full space-y-4">
-                <img src="image1.jpeg" class="w-full rounded-lg shadow-[0_0_30px_rgba(0,243,255,0.1)] border border-white/10" alt="Part 1">
-                <img src="image2.jpeg" class="w-full rounded-lg shadow-[0_0_30px_rgba(191,0,255,0.1)] border border-white/10" alt="Part 2">
-                <img src="image3.jpeg" class="w-full rounded-lg shadow-[0_0_30px_rgba(255,215,0,0.1)] border border-white/10" alt="Part 3">
+            <div class="space-y-4 w-full">
+                <div class="glass p-2 rounded-xl">
+                    <img src="image1.jpeg" class="w-full rounded-lg" alt="Infographic Part 1">
+                </div>
+                <div class="glass p-2 rounded-xl">
+                    <img src="image2.jpeg" class="w-full rounded-lg" alt="Infographic Part 2">
+                </div>
+                <div class="glass p-2 rounded-xl">
+                    <img src="image3.jpeg" class="w-full rounded-lg" alt="Infographic Part 3">
+                </div>
             </div>
+            
+            <button onclick="closeGallery()" class="px-8 py-3 rounded-full border border-gray-600 text-gray-400 hover:text-white hover:border-white transition-colors text-sm uppercase tracking-wider">
+                Close Gallery
+            </button>
         </div>
     </div>
 
@@ -89,39 +91,40 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
-
         window.addEventListener('resize', init);
         init();
 
         function draw() {
-            // Trailing effect
-            ctx.fillStyle = 'rgba(0, 4, 40, 0.2)'; 
+            // Dark Space Background with slight trail
+            ctx.fillStyle = 'rgba(0, 4, 40, 0.15)';
             ctx.fillRect(0, 0, width, height);
 
-            const time = Date.now() * 0.001; // Speed
+            const time = Date.now() * 0.0008; // Slower, elegant speed
             const centerX = width / 2;
             
-            // Draw DNA Strands
             for (let i = 0; i < 60; i++) {
-                const y = (i / 60) * height; // Spread across full height
-                // DNA Wave calculation
-                const wave = Math.sin(time + i * 0.15) * (width < 600 ? 80 : 150); // Smaller width on mobile
+                const y = (i / 60) * height;
+                const wave = Math.sin(time + i * 0.12) * (width * 0.15);
                 
-                // Strand 1 (Cyan)
-                ctx.fillStyle = '#00f3ff';
+                // Strand 1 - GOLD (Nanoparticles)
+                ctx.fillStyle = '#FFD700';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#FFD700';
                 ctx.beginPath();
                 ctx.arc(centerX + wave, y, 3, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Strand 2 (Magenta)
-                ctx.fillStyle = '#ff00ff';
+                // Strand 2 - CYAN (Tech)
+                ctx.fillStyle = '#00f3ff';
+                ctx.shadowColor = '#00f3ff';
                 ctx.beginPath();
                 ctx.arc(centerX - wave, y, 3, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Connections (Hydrogen Bonds)
-                if (i % 3 === 0) {
-                    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                // Connectors
+                if (i % 4 === 0) {
+                    ctx.shadowBlur = 0;
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
                     ctx.beginPath();
                     ctx.moveTo(centerX + wave, y);
                     ctx.lineTo(centerX - wave, y);
@@ -134,26 +137,29 @@
 
         // --- INTERACTIVITY LOGIC ---
         const modal = document.getElementById('galleryModal');
-        
+        const mainContent = document.getElementById('mainContent');
+
         function openGallery() {
             modal.classList.remove('hidden');
-            // Force reflow
-            void modal.offsetWidth; 
-            modal.classList.remove('opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
             document.body.style.overflow = 'hidden';
+            mainContent.classList.add('opacity-50', 'blur-[2px]');
         }
 
         function closeGallery() {
             modal.classList.add('opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
+                mainContent.classList.remove('opacity-50', 'blur-[2px]');
                 document.body.style.overflow = '';
-            }, 500);
+            }, 300);
         }
-
-        // Close on escape
+        
+        // Escape key close
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeGallery();
+            if(e.key === 'Escape') closeGallery();
         });
     </script>
 </body>
